@@ -1,0 +1,22 @@
+<p>
+  Hello {{name}}
+</p>
+
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Imię" [ngModel]="name">
+  </mat-form-field>
+</div>
+
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Imię" (ngModel)="name">
+  </mat-form-field>
+</div>
+
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Imię" [(ngModel)]="name">
+  </mat-form-field>
+</div>
+

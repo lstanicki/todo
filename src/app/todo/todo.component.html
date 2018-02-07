@@ -1,0 +1,32 @@
+<mat-list>
+  <h3 mat-subheader>TODOs</h3>
+  <ng-container *ngFor="let todo of todoList$ | async; let i = index">
+    <mat-list-item *ngIf="!todo.isChecked; else checked">
+      <mat-icon mat-list-icon
+                (click)="removeTodo(i)">delete
+      </mat-icon>
+      <h4 matLine>{{todo.name}}</h4>
+      <p matLine> {{todo.isChecked}} </p>
+    </mat-list-item>
+  </ng-container>
+</mat-list>
+
+<form [formGroup]="form"
+      (submit)="form.valid && addTodo()">
+  <mat-form-field>
+    <input placeholder="TODO name"
+           matInput
+           formControlName="todoName"
+           required>
+  </mat-form-field>
+  <div style="display: inline-block;">
+    <button mat-raised-button [disabled]="loading$ | async" color="primary">Dodaj</button>
+  </div>
+  <div style="display: inline-block">
+    <mat-spinner *ngIf="loading$ | async" [diameter]="24" [strokeWidth]="3"></mat-spinner>
+  </div>
+</form>
+
+<ng-template #checked>
+  <mat-list-item>zaznaczono</mat-list-item>
+</ng-template>
